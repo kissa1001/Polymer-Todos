@@ -1,0 +1,43 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+
+<dom-module id="todo-item">
+  <style>
+    :host {
+      --paper-checkbox-checked-color: rgb(52, 214, 132);
+      --paper-checkbox-checked-ink-color: rgb(52, 214, 132);
+    }
+    paper-material {
+      padding: 10px 0px 10px 10px;
+      width: 500px;
+    }
+    .delete-button {
+      color: rgb(52, 214, 132);
+      float: right;
+      bottom: 9px;
+    }
+  </style>
+  <template>
+    <paper-item>
+      <paper-material elevation="1">
+        <paper-checkbox checked="{{todo.done}}">
+          {{todo.name}}
+        </paper-checkbox>
+        <paper-icon-button class="delete-button" icon="delete" on-tap="_delete"></paper-icon-button>
+      </paper-material>
+    </paper-item>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'todo-item',
+      _delete: function() {
+        this.fire('delete', this.todo);
+      }
+    })
+  </script>
+</dom-module>
